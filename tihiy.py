@@ -3,7 +3,7 @@
 import vk_api, json
 from vk_api.longpoll import VkLongPoll, VkEventType
 
-vk_session = vk_api.VkApi(token = 'vk1.a.1hE4h27tfLS1XW-VfMKm4IZSKIzC7_WtF7wM6Icv9haKlWdvTXgenfVI3l-fmXRiH8sAHc2s45HaJNUfK7IiOKSjLbGGkIkSmFiC5FUy1q886NRhWjzafbYJkICy8rPDeeq-4kmDO74ENI0VocxE7OdUg9UTv1qPHnz2pls6GnrhYUUUUxEMX0t3ByO78GTLYfZ4vleskVkm3CIqgw3WuA')
+vk_session = vk_api.VkApi(token = 'vk1.a.ZIra4SVC4Y_eYmjvSLnKLkNhhCA_pdtTm10J1CLPh2_oUUe-15_MAM2uJWp2MF8osHYN6DviwEzsNqY5Ni6Zl0yDxV-43_2zKyw2JW80BjHdpN4Z6g7td9iaQd2y3KQd1OTbDPSlHDiTpDYh35LjPYgWtSiq6vLmqUwIRo583ltBoqPhBu_LNsIqbqlaw8a-PoslR9VsU-Rzx9I7YbP5PQ')
 vk_session_api = vk_session.get_api()
 longpoll = VkLongPoll(vk_session)
 
