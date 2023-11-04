@@ -49,4 +49,4 @@ for event in longpoll.listen():
             elif message == 'описание и фото':
                 vk_session_api.messages.send(user_id=id, message='Качественные магнитные наушники премиального класса. В отличие от капсульных, в которые вставляется батарейка, здесь установлен аккумулятор, которого хватает более чем на 4 часа разговора. Благодаря Bluetooth версии 5.0 качество разговора остаётся идеальным, вне зависимости от того, как далеко расположен телефон.  Специальная усиливающая антенна позволяет не перебить сигнал наушника в случае, если человек сидящий рядом с вами тоже одел наушник.', random_id=random_id, keyboard=keyboard)
             elif message == 'связь с админом':
-                vk_session_api.messages.send(user_id=id, message='Что вас интересует?', random_id=random_id, keyboard=keyboard)
+                vk_session_api.messages.send(user_id=id, message='Что вас интересует?', random_id=random_id)
