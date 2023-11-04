@@ -1,6 +1,7 @@
 import vk_api
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from vk_api.longpoll import VkLongPoll, VkEventType
+import json
 
 vk_session = vk_api.VkApi(token='vk1.a.4b1-Kuc35EVLfgP5SVDUYO-0aUd8OTmjPDxJYp4TEqTB6BDSHPeN9w9dKd8mAhuj21dRv2LGkMwpvaOFKMH4QWsyx9Siq8jYHpyZl26jj409GRvXtiPUxQ984JiFoFTzLJtO1BGTlUqlfPTu_6s58JGONA8IA7ASSMmraj2ivAIOA1Fc-8bfgx0Ke9BSpqydPWWWoWUqhZ3UT4EDK0-KNA')
 vk_session_api = vk_session.get_api()
@@ -11,8 +12,9 @@ def sender(id, text, keyboard=None):
 
 print('VK бот запущен')
 
-def generate_keyboard():
-    keyboard = VkKeyboard(one_time=True)
+def generate_inline_keyboard():
+    # Создаем объект клавиатуры
+    keyboard = VkKeyboard(inline=True)
 
     # Добавляем первую кнопку
     keyboard.add_button('Кнопка 1', color=VkKeyboardColor.PRIMARY)
@@ -23,12 +25,8 @@ def generate_keyboard():
     # Добавляем третью кнопку
     keyboard.add_button('Кнопка 3', color=VkKeyboardColor.PRIMARY)
 
-    # Конечно, вы можете добавить больше кнопок, если нужно
-
-    # Помещаем клавиатуру в сообщение
-    keyboard = keyboard.get_keyboard()
-
-    return keyboard
+    # Возвращаем JSON-представление клавиатуры
+    return keyboard.get_keyboard()
 
 for event in longpoll.listen():
     if event.type == VkEventType.MESSAGE_NEW:
@@ -36,7 +34,8 @@ for event in longpoll.listen():
             message = event.text.lower()
             id = event.user_id
             if message == 'начать':
-                keyboard = generate_keyboard()  # Генерируем клавиатуру
+                keyboard = generate_inline_keyboard()  # Генерируем inline клавиатуру
+                keyboard = json.dumps(keyboard)  # Преобразуем объект клавиатуры в JSON
                 sender(id, 'Рад приветствовать тебя в сообществе “ТИХИЙ ГЕНИЙ”'
 '\nПредполагаю, что тебе понадобилась помощь, и мы с удовольствием её окажем 😉'
 '\nЧуть ниже прайс-лист, а также ссылочки для связи с админом и описанием условий аренды. '
