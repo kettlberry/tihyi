@@ -26,8 +26,8 @@ def generate_inline_keyboard():
     # Добавляем третью кнопку "Связь с админом" с красным цветом и фиксированной шириной
     keyboard.add_button('Связь с админом', color=VkKeyboardColor.NEGATIVE)
 
-    # Возвращаем объект клавиатуры и устанавливаем параметр one_time в True
-    return keyboard.get_keyboard(one_time=True)
+    # Возвращаем объект клавиатуры
+    return keyboard.get_keyboard()
 
 for event in longpoll.listen():
     if event.type == VkEventType.MESSAGE_NEW:
