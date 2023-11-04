@@ -2,12 +2,16 @@ import vk_api
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from vk_api.longpoll import VkLongPoll, VkEventType
 
-vk_session = vk_api.VkApi(token='vk1.a.4b1-Kuc35EVLfgP5SVDUYO-0aUd8OTmjPDxJYp4TEqTB6BDSHPeN9w9dKd8mAhuj21dRv2LGkMwpvaOFKMH4QWsyx9Siq8jYHpyZl26jj409GRvXtiPUxQ984JiFoFTzLJtO1BGTlUqlfPTu_6s58JGONA8IA7ASSMmraj2ivAIOA1Fc-8bfgx0Ke9BSpqydPWWWoWUqhZ3UT4EDK0-KNA')
+vk_session = vk_api.VkApi(token='vk1.a.qnbdmOe7uUL5JadRaFqGXlFH_ZiOOgk1cxvLWU7JviM1VDVbATpRzHTYUEWu3BN8ASwiBqlDttgHfdTje1RR2UmRhZcY0EzSbONh4kSiW6y7edZ89oxuIi_ZnybvH7DKg78rEoOKmJkovxgUfKcjq_O0Gc2apPcwLov28iukIbJu2ni_hyTZLVs9VDXinDgnqkwGApXsYkOpoa9ZiiETqA')
 vk_session_api = vk_session.get_api()
 longpoll = VkLongPoll(vk_session)
 
-def sender(id, text, keyboard=None):
+def sender(id, text, photos=None, keyboard=None):
+    # Отправляем текстовое сообщение
     vk_session.method('messages.send', {'user_id': id, 'message': text, 'random_id': 0, 'keyboard': keyboard})
+    # Отправляем фотографии, если они указаны
+    if photos:
+        vk_session.method('messages.send', {'user_id': id, 'message': '', 'random_id': 0, 'attachment': photos})
 
 print('VK бот запущен')
 
@@ -56,6 +60,9 @@ for event in longpoll.listen():
 '\n6. Мы встречаемся и обмениваем залог на наш комплект.'
 '\n\nВыберите одно из следующих действий:', keyboard=keyboard)
             elif message == 'описание и фото':
-                sender(id, 'Здесь вы можете найти описание и фотографии наших продуктов.')
+                text = 'Качественные магнитные наушники премиального класса. В отличие от капсульных, в которые вставляется батарейка, здесь установлен аккумулятор, которого хватает более чем на 4 часа разговора. Благодаря Bluetooth версии 5.0 качество разговора остаётся идеальным, вне зависимости от того, как далеко расположен телефон.  Специальная усиливающая антенна позволяет не перебить сигнал наушника в случае, если человек сидящий рядом с вами тоже одел наушник.'
+                # Замените 'photo123_456' и 'photo789_012' на ссылки на фотографии
+                photos = [f'photo123_456', f'photo789_012']
+                sender(id, text, photos=photos, keyboard=keyboard)
             elif message == 'связь с админом':
-                sender(id, 'Связаться с администратором можно по телефону: 123-456-789\nИли по электронной почте: admin@example.com')
+                sender(id, 'Что вас интересует?', keyboard=keyboard)
