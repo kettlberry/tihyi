@@ -3,7 +3,7 @@ import random
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from vk_api.longpoll import VkLongPoll, VkEventType
 
-vk_session = vk_api.VkApi(token='YOUR_ACCESS_TOKEN')
+vk_session = vk_api.VkApi(token='vk1.a.qnbdmOe7uUL5JadRaFqGXlFH_ZiOOgk1cxvLWU7JviM1VDVbATpRzHTYUEWu3BN8ASwiBqlDttgHfdTje1RR2UmRhZcY0EzSbONh4kSiW6y7edZ89oxuIi_ZnybvH7DKg78rEoOKmJkovxgUfKcjq_O0Gc2apPcwLov28iukIbJu2ni_hyTZLVs9VDXinDgnqkwGApXsYkOpoa9ZiiETqA')
 vk_session_api = vk_session.get_api()
 longpoll = VkLongPoll(vk_session)
 
