@@ -3,14 +3,6 @@ import random
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from vk_api.longpoll import VkLongPoll, VkEventType
 
-vk_session = vk_api.VkApi(token='vk1.a.qnbdmOe7uUL5JadRaFqGXlFH_ZiOOgk1cxvLWU7JviM1VDVbATpRzHTYUEWu3BN8ASwiBqlDttgHfdTje1RR2UmRhZcY0EzSbONh4kSiW6y7edZ89oxuIi_ZnybvH7DKg78rEoOKmJkovxgUfKcjq_O0Gc2apPcwLov28iukIbJu2ni_hyTZLVs9VDXinDgnqkwGApXsYkOpoa9ZiiETqA')
-vk_session_api = vk_session.get_api()
-longpoll = VkLongPoll(vk_session)
-
-print('VK бот запущен')
-
-keyboard = generate_inline_keyboard()
-
 def generate_inline_keyboard():
     keyboard = VkKeyboard(inline=True)
     keyboard.add_button('Условия аренды', color=VkKeyboardColor.PRIMARY)
@@ -19,6 +11,14 @@ def generate_inline_keyboard():
     keyboard.add_line()
     keyboard.add_button('Связь с админом', color=VkKeyboardColor.NEGATIVE)
     return keyboard.get_keyboard()
+
+vk_session = vk_api.VkApi(token='vk1.a.qnbdmOe7uUL5JadRaFqGXlFH_ZiOOgk1cxvLWU7JviM1VDVbATpRzHTYUEWu3BN8ASwiBqlDttgHfdTje1RR2UmRhZcY0EzSbONh4kSiW6y7edZ89oxuIi_ZnybvH7DKg78rEoOKmJkovxgUfKcjq_O0Gc2apPcwLov28iukIbJu2ni_hyTZLVs9VDXinDgnqkwGApXsYkOpoa9ZiiETqA')
+vk_session_api = vk_session.get_api()
+longpoll = VkLongPoll(vk_session)
+
+print('VK бот запущен')
+
+keyboard = generate_inline_keyboard()
 
 for event in longpoll.listen():
     if event.type == VkEventType.MESSAGE_NEW:
